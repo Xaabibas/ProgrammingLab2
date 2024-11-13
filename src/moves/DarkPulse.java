@@ -16,7 +16,7 @@ public class DarkPulse extends SpecialMove {
 
     @Override
     protected void applyOppEffects(Pokemon def) {
-        if (0.2 > Math.random()){
+        if (0.2 > Math.random()) {
             def.confuse();
         }
     }
