@@ -74,73 +74,74 @@ public class Main {
                         }
                     level = Integer.parseInt(i);
                     }
+                    counter++;
+            }
+            if (!correct){
+                System.out.println("Введен неверный формат данных!!!");
+                break;
+            }
 
-                if (!correct){
-                    System.out.println("Введен неверный формат данных!!!");
-                    break;
+            if (counter == 4){
+                counter = 0;
+                if (team.equals("ally")){
+                    ally = true;
                 }
-
-                if (counter == 3){
-                    counter = 0;
-                    if (team.equals("ally")){
-                        ally = true;
-                    }
-                    else{
-                        foe = true;
-                    }
-                    switch (Class){
-                        case "castform":
-                             if (team.equals("ally")){
-                                 b.addAlly(new Castform(name, level));
-                             }
-                             else{
-                                 b.addFoe(new Castform(name, level));
-                             }
-                             break;
-                        case "corphish":
-                            if (team.equals("ally")){
-                                b.addAlly(new Corphish(name, level));
-                            }
-                            else{
-                                b.addFoe(new Corphish(name, level));
-                            }
-                            break;
-                        case "crawdaunt":
-                            if (team.equals("ally")){
-                                b.addAlly(new Crawdaunt(name, level));
-                            }
-                            else{
-                                b.addFoe(new Crawdaunt(name, level));
-                            }
-                            break;
-                        case "poliwag":
-                            if (team.equals("ally")){
-                                b.addAlly(new Poliwag(name, level));
-                            }
-                            else{
-                                b.addFoe(new Poliwag(name, level));
-                            }
-                            break;
-                        case "poliwhirl":
-                            if (team.equals("ally")){
-                                b.addAlly(new Poliwhirl(name, level));
-                            }
-                            else{
-                                b.addFoe(new Poliwhirl(name, level));
-                            }
-                            break;
-                        case "poliwrath":
-                            if (team.equals("ally")){
-                                b.addAlly(new Poliwrath(name, level));
-                            }
-                            else{
-                                b.addFoe(new Poliwrath(name, level));
-                            }
+                else{
+                    foe = true;
+                }
+                switch (Class){
+                    case "castform":
+                         if (team.equals("ally")){
+                             b.addAlly(new Castform(name, level));
+                         }
+                         else{
+                             b.addFoe(new Castform(name, level));
+                         }
+                         break;
+                    case "corphish":
+                        if (team.equals("ally")){
+                            b.addAlly(new Corphish(name, level));
+                        }
+                        else{
+                            b.addFoe(new Corphish(name, level));
+                        }
+                        break;
+                    case "crawdaunt":
+                        if (team.equals("ally")){
+                            b.addAlly(new Crawdaunt(name, level));
+                        }
+                        else{
+                            b.addFoe(new Crawdaunt(name, level));
+                        }
+                        break;
+                    case "poliwag":
+                        if (team.equals("ally")){
+                            b.addAlly(new Poliwag(name, level));
+                        }
+                        else{
+                            b.addFoe(new Poliwag(name, level));
+                        }
+                        break;
+                    case "poliwhirl":
+                        if (team.equals("ally")){
+                            b.addAlly(new Poliwhirl(name, level));
+                        }
+                        else{
+                            b.addFoe(new Poliwhirl(name, level));
+                        }
+                        break;
+                    case "poliwrath":
+                        if (team.equals("ally")){
+                            b.addAlly(new Poliwrath(name, level));
+                        }
+                        else{
+                            b.addFoe(new Poliwrath(name, level));
+                        }
                     }
                 }
             }
-        }
         if (correct){
+
             if (ally&&foe){
                 b.go();
             }
