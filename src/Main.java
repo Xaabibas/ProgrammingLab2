@@ -4,10 +4,10 @@ import ru.ifmo.se.pokemon.Pokemon;
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {
-    static final String[] teams = {"ally", "foe"};
+    static final String[] TEAMS = {"ally", "foe"};
 
     public static boolean is_team(String team) {
-        for (String i : teams) {
+        for (String i : TEAMS) {
             if (i.equals(team.toLowerCase())) {
                 return true;
             }
@@ -15,13 +15,14 @@ public class Main {
         return false;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException, InstantiationException, IllegalAccessException {
 
         // Данный вводим в формате Class Team Name Level
         // Class - класс покемона
-        // Team - команда покемона
+        // Team - команда покемона, ally или foe
         // Name - имя покемона
-        // Level - уровень покемона
+        // Level - уровень покемона, целое число
 
         Battle b = new Battle();
 
@@ -62,21 +63,14 @@ public class Main {
             }
             if (counter == 4) {
                 counter = 0;
-
-                try {
-                    Class<?> myClass = Class.forName("pokemons." + data[0]);
-                    Pokemon pokemon = (Pokemon) myClass.getConstructor(String.class, int.class).newInstance(data[2],
-                            Integer.parseInt(data[3]));
-                    if (data[1].equals("ally")) {
-                        ally = true;
-                        b.addAlly(pokemon);
-                    } else {
-                        foe = true;
-                        b.addFoe(pokemon);
-                    }
-                } catch (ClassNotFoundException | InvocationTargetException | InstantiationException |
-                         IllegalAccessException | NoSuchMethodException e) {
-                    throw new RuntimeException(e);
+                Pokemon pokemon = (Pokemon) Class.forName("pokemons." + data[0]).
+                        getConstructor(String.class, int.class).newInstance(data[2], Integer.parseInt(data[3]));
+                if (data[1].equals("ally")) {
+                    ally = true;
+                    b.addAlly(pokemon);
+                } else {
+                    foe = true;
+                    b.addFoe(pokemon);
                 }
             }
         }
